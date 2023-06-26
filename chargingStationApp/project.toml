@@ -1,0 +1,7 @@
+[[buildpacks]]
+id = "paketo-buildpacks/go"
+version = "2.3.5"
+
+[[buildpacks]]
+id = "paketo-buildpacks/nginx"
+version = "3.0.0"

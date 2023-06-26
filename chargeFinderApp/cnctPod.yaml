@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cnct
+  labels:
+    app: cnctasnmnt
+spec:
+  containers:
+  - name: cnct
+    image: cnctasgn:1.0
+    imagePullPolicy: Never
+
+    ports:
+    - containerPort: 8082
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: cnct-service
+spec:
+  selector:
+    app: cnctasnmnt
+  ports:
+    - protocol: TCP
+      port: 8082
+      targetPort: 8082
+
+

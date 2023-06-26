@@ -1,0 +1,13 @@
+FROM golang:1.20.1-alpine3.17 AS builder
+WORKDIR /ap
+COPY . /ap/
+RUN go mod tidy
+RUN go mod download
+RUN go build -o main main.go
+
+
+FROM alpine:3.13
+WORKDIR /app
+COPY --from=builder /ap /app
+EXPOSE 8082
+ENTRYPOINT ["/app/main"]

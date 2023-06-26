@@ -1,0 +1,37 @@
+
+# FROM golang:1.20.1-alpine3.17
+
+# WORKDIR /app
+
+
+# COPY . .
+
+# RUN go build -o main main.go
+
+# EXPOSE 8080
+
+# CMD [ "/app/main" ]
+
+
+
+# build stage
+FROM golang:1.20.1-alpine3.17 AS builder
+
+WORKDIR /ap
+
+
+COPY . /ap/
+
+RUN go build -o main main.go
+# run stage
+FROM alpine:3.13
+WORKDIR /app
+COPY --from=builder /ap /app
+
+EXPOSE 8080
+
+CMD [ "/app/main" ]
+
+
+
+
